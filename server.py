@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Shopify MCP Server — Full Admin API access via FastMCP.
+Shopify MCP Server â Full Admin API access via FastMCP.
 Provides tools for managing products, orders, customers, collections,
 inventory, and fulfillments through the Shopify Admin REST API.
 
@@ -46,7 +46,7 @@ mcp = FastMCP("shopify_mcp", host="0.0.0.0", port=PORT, json_response=True)
 
 
 # ---------------------------------------------------------------------------
-# Token Manager — handles automatic token lifecycle
+# Token Manager â handles automatic token lifecycle
 # ---------------------------------------------------------------------------
 
 class TokenManager:
@@ -87,7 +87,7 @@ class TokenManager:
             self._access_token = static_token
             self._expires_at = float("inf")  # Never expires in static mode
         else:
-            logger.warning("No credentials configured — API calls will fail")
+            logger.warning("No credentials configured â API calls will fail")
 
     @property
     def is_expired(self) -> bool:
@@ -121,7 +121,7 @@ class TokenManager:
         """Force a token refresh (e.g., after a 401 error)."""
         if not self._use_client_credentials:
             raise RuntimeError(
-                "Cannot refresh — using static token. Set SHOPIFY_CLIENT_ID + "
+                "Cannot refresh â using static token. Set SHOPIFY_CLIENT_ID + "
                 "SHOPIFY_CLIENT_SECRET to enable auto-refresh."
             )
 
@@ -205,7 +205,7 @@ async def _request(
     body: Optional[dict] = None,
     _retried: bool = False,
 ) -> dict:
-    """Central HTTP helper — every API call goes through here.
+    """Central HTTP helper â every API call goes through here.
 
     On 401 errors, automatically refreshes the token and retries once.
     """
@@ -230,7 +230,7 @@ async def _request(
 
         # Auto-retry on 401 with a fresh token (once)
         if resp.status_code == 401 and not _retried and token_manager._use_client_credentials:
-            logger.warning("Got 401 — refreshing token and retrying...")
+            logger.warning("Got 401 â refreshing token and retrying...")
             await token_manager.force_refresh()
             return await _request(method, path, params=params, body=body, _retried=True)
 
@@ -249,15 +249,15 @@ def _error(e: Exception) -> str:
         except Exception:
             detail = e.response.text[:500]
         messages = {
-            401: "Authentication failed — check your SHOPIFY_CLIENT_ID/SECRET or SHOPIFY_ACCESS_TOKEN.",
-            403: "Permission denied — your token may lack the required scope.",
-            404: "Resource not found — double-check the ID.",
+            401: "Authentication failed â check your SHOPIFY_CLIENT_ID/SECRET or SHOPIFY_ACCESS_TOKEN.",
+            403: "Permission denied â your token may lack the required scope.",
+            404: "Resource not found â double-check the ID.",
             422: f"Validation error from Shopify: {json.dumps(detail)}",
-            429: "Rate-limited — wait a moment and retry.",
+            429: "Rate-limited â wait a moment and retry.",
         }
         return messages.get(status, f"Shopify API error {status}: {json.dumps(detail)}")
     if isinstance(e, httpx.TimeoutException):
-        return "Request timed out — try again."
+        return "Request timed out â try again."
     if isinstance(e, RuntimeError):
         return str(e)
     return f"Unexpected error: {type(e).__name__}: {e}"
@@ -268,9 +268,9 @@ def _fmt(data: Any) -> str:
     return json.dumps(data, indent=2, default=str)
 
 
-# ═══════════════════════════════════════════════════════════════════════════
+# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 # PRODUCTS
-# ═══════════════════════════════════════════════════════════════════════════
+# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 class ListProductsInput(BaseModel):
     model_config = ConfigDict(str_strip_whitespace=True, extra="forbid")
@@ -437,9 +437,9 @@ async def shopify_count_products(params: ProductCountInput) -> str:
         return _error(e)
 
 
-# ═══════════════════════════════════════════════════════════════════════════
+# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 # ORDERS
-# ═══════════════════════════════════════════════════════════════════════════
+# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 class ListOrdersInput(BaseModel):
     model_config = ConfigDict(str_strip_whitespace=True, extra="forbid")
@@ -561,9 +561,9 @@ async def shopify_cancel_order(params: CancelOrderInput) -> str:
         return _error(e)
 
 
-# ═══════════════════════════════════════════════════════════════════════════
+# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 # CUSTOMERS
-# ═══════════════════════════════════════════════════════════════════════════
+# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 class ListCustomersInput(BaseModel):
     model_config = ConfigDict(str_strip_whitespace=True, extra="forbid")
@@ -713,9 +713,9 @@ async def shopify_get_customer_orders(params: CustomerOrdersInput) -> str:
         return _error(e)
 
 
-# ═══════════════════════════════════════════════════════════════════════════
+# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 # COLLECTIONS (Custom + Smart)
-# ═══════════════════════════════════════════════════════════════════════════
+# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 class ListCollectionsInput(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -764,9 +764,9 @@ async def shopify_get_collection_products(params: GetCollectionProductsInput) ->
         return _error(e)
 
 
-# ═══════════════════════════════════════════════════════════════════════════
+# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 # INVENTORY
-# ═══════════════════════════════════════════════════════════════════════════
+# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 class ListInventoryLocationsInput(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -836,9 +836,9 @@ async def shopify_set_inventory_level(params: SetInventoryLevelInput) -> str:
         return _error(e)
 
 
-# ═══════════════════════════════════════════════════════════════════════════
+# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 # FULFILLMENTS
-# ═══════════════════════════════════════════════════════════════════════════
+# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 class ListFulfillmentsInput(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -900,9 +900,9 @@ async def shopify_create_fulfillment(params: CreateFulfillmentInput) -> str:
         return _error(e)
 
 
-# ═══════════════════════════════════════════════════════════════════════════
+# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 # SHOP / STORE INFO
-# ═══════════════════════════════════════════════════════════════════════════
+# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 class EmptyInput(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -921,9 +921,9 @@ async def shopify_get_shop(params: EmptyInput) -> str:
         return _error(e)
 
 
-# ═══════════════════════════════════════════════════════════════════════════
+# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 # WEBHOOKS
-# ═══════════════════════════════════════════════════════════════════════════
+# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 class ListWebhooksInput(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -968,6 +968,70 @@ async def shopify_create_webhook(params: CreateWebhookInput) -> str:
     except Exception as e:
         return _error(e)
 
+
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# THEMES & THEME ASSETS
+# ═══════════════════════════════════════════════════════════════════════════
+
+class ListThemesInput(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+
+@mcp.tool(
+    name="shopify_list_themes",
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": True},
+)
+async def shopify_list_themes(params: ListThemesInput) -> str:
+    """List all themes in the store."""
+    try:
+        data = await _request("GET", "themes.json")
+        themes = data.get("themes", [])
+        return _fmt({"count": len(themes), "themes": themes})
+    except Exception as e:
+        return _error(e)
+
+
+class GetThemeAssetInput(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True, extra="forbid")
+    theme_id: int = Field(..., description="Theme ID")
+    key: str = Field(..., description="Asset key, e.g. templates/index.json, config/settings_data.json")
+
+
+@mcp.tool(
+    name="shopify_get_theme_asset",
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": True},
+)
+async def shopify_get_theme_asset(params: GetThemeAssetInput) -> str:
+    """Read a theme asset by key. Use to read template JSON, section configs, etc."""
+    try:
+        p = {"asset[key]": params.key}
+        data = await _request("GET", f"themes/{params.theme_id}/assets.json", params=p)
+        return _fmt(data.get("asset", data))
+    except Exception as e:
+        return _error(e)
+
+
+class UpdateThemeAssetInput(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    theme_id: int = Field(..., description="Theme ID")
+    key: str = Field(..., description="Asset key, e.g. templates/index.json")
+    value: str = Field(..., description="New asset content (JSON or Liquid)")
+
+
+@mcp.tool(
+    name="shopify_update_theme_asset",
+    annotations={"readOnlyHint": False, "destructiveHint": False, "idempotentHint": True, "openWorldHint": True},
+)
+async def shopify_update_theme_asset(params: UpdateThemeAssetInput) -> str:
+    """Update a theme asset. Modify templates, sections, and config files."""
+    try:
+        body = {"asset": {"key": params.key, "value": params.value}}
+        data = await _request("PUT", f"themes/{params.theme_id}/assets.json", body=body)
+        return _fmt(data.get("asset", data))
+    except Exception as e:
+        return _error(e)
 
 # ---------------------------------------------------------------------------
 # Entrypoint
