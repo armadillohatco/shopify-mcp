@@ -17,6 +17,7 @@ import asyncio
 from typing import Optional, List, Dict, Any
 from enum import Enum
 import httpx
+import certifi
 from pydantic import BaseModel, Field, ConfigDict, field_validator
 from mcp.server.fastmcp import FastMCP
 
@@ -133,7 +134,7 @@ class TokenManager:
 
         logger.info("Refreshing Shopify access token via client_credentials grant...")
 
-        async with httpx.AsyncClient() as client:
+        async with httpx.AsyncClient(verify=certifi.where()) as client:
             resp = await client.post(
                 url,
                 data={
@@ -215,7 +216,7 @@ async def _request(
     url = f"{_base_url()}/{path}"
     headers = await _headers()
 
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(verify=certifi.where()) as client:
         resp = await client.request(
             method,
             url,
