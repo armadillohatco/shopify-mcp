@@ -18,6 +18,7 @@ from typing import Optional, List, Dict, Any
 from enum import Enum
 import httpx
 import certifi
+import certifi
 from pydantic import BaseModel, Field, ConfigDict, field_validator
 from mcp.server.fastmcp import FastMCP
 
