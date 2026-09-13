@@ -1,0 +1,65 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="fonts-local.css" rel="stylesheet">
+<style>
+  :root{ --cream:#f6f2ec; --ink:#161513; --red:#c2402a; --gold:#e5a93a; --rule:#d8d2c8; --muted:#6b665e; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1080px;height:1350px;background:var(--cream);color:var(--ink);font-family:"Work Sans",Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+  .card{width:1080px;height:1350px;padding:0 72px 0;border-top:14px solid var(--red);border-bottom:14px solid var(--red);display:flex;flex-direction:column}
+  .bebas{font-family:"Bebas Neue","Arial Narrow",Impact,sans-serif;font-weight:400;letter-spacing:.01em}
+  .brand{text-align:center;padding-top:44px}
+  .brand h1{font-size:118px;line-height:.92}
+  .brand .loc{margin-top:8px;font-size:22px;letter-spacing:.32em;color:var(--muted);text-transform:uppercase}
+  .machine{text-align:center;margin-top:34px}
+  .machine h2{font-size:72px;line-height:1;color:var(--red)}
+  .machine .specs{margin-top:10px;font-size:22px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+  .machine .specs span{color:var(--red);padding:0 10px}
+  table{width:100%;border-collapse:collapse;margin-top:38px}
+  th{font-size:22px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-align:right;padding:0 0 14px;color:var(--ink);border-bottom:3px solid var(--ink)}
+  th:first-child{text-align:left}
+  th small{display:block;font-size:15px;font-weight:600;letter-spacing:.12em;color:var(--red);margin-top:4px}
+  td{padding:30px 0;border-bottom:2px solid var(--rule);vertical-align:middle}
+  td.label{font-family:"Bebas Neue","Arial Narrow",Impact,sans-serif;font-size:48px;line-height:1;text-align:left}
+  td.label em{font-style:normal;color:var(--red)}
+  td.price{font-family:"Bebas Neue","Arial Narrow",Impact,sans-serif;font-size:66px;line-height:1;text-align:right;width:230px}
+  td.price.week{width:260px}
+  .weekend{margin-top:32px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:26px 40px}
+  .weekend .l{font-size:44px;line-height:1}
+  .weekend .l small{display:block;font-family:"Work Sans",sans-serif;font-size:19px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#cfc8bb;margin-top:8px}
+  .weekend .r{font-size:82px;line-height:1;color:var(--gold)}
+  .terms{margin-top:44px;text-align:center;font-size:23px;line-height:1.75;color:#2a2823}
+  .terms b{font-weight:700}
+  .terms .dot{color:var(--red);padding:0 12px}
+  .cta{margin-top:auto;margin-bottom:40px;padding-top:34px;border-top:2px solid var(--rule);text-align:center;font-size:52px;line-height:1;color:var(--red)}
+  .cta .sep{color:var(--ink);padding:0 16px}
+</style></head><body>
+<div class="card">
+  <div class="brand">
+    <h1 class="bebas">NASHCO RENTALS</h1>
+    <div class="loc">Leona, Texas</div>
+  </div>
+  <div class="machine">
+    <h2 class="bebas">TAKEUCHI TL11R3 TRACK LOADER</h2>
+    <div class="specs">111 HP<span>•</span>High-Flow Skid Steer<span>•</span>More machine than a 75 HP rental</div>
+  </div>
+
+  <table>
+    <tr><th>Attachment</th><th>Day</th><th>Week<small>Delivery included</small></th></tr>
+    <tr><td class="label">BUCKET</td><td class="price">$450</td><td class="price week">$1,950</td></tr>
+    <tr><td class="label"><em>+</em> GRAPPLE</td><td class="price">$575</td><td class="price week">$2,400</td></tr>
+    <tr><td class="label"><em>+</em> POWER RAKE</td><td class="price">$600</td><td class="price week">$2,500</td></tr>
+  </table>
+
+  <div class="weekend">
+    <div class="l bebas">WEEKEND &nbsp;—&nbsp; SAT + SUN<small>Bucket &nbsp;·&nbsp; Delivery included</small></div>
+    <div class="r bebas">$850</div>
+  </div>
+
+  <div class="terms">
+    Bucket included with every rental<span class="dot">•</span>Day = 8 machine hours<span class="dot">•</span>Delivered fueled<br>
+    <b>$500 refundable deposit</b><span class="dot">•</span>You operate<span class="dot">•</span>Delivery within 25 miles of Leona
+  </div>
+
+  <div class="cta bebas">MESSAGE WITH YOUR DATES<span class="sep">—</span>FAST QUOTE</div>
+</div>
+</body></html>
