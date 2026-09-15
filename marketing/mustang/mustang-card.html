@@ -1,16 +1,17 @@
 <!doctype html><html><head><meta charset="utf-8"><link href="fonts-local.css" rel="stylesheet">
 <style>
-:root{ --bg:#121212; --ink:#f4f1ec; --red:#C8102E; --muted:#a7a29a; --rule:#2c2c2c; }
+:root{ --bg:#1b1917; --ink:#EDE6D3; --red:#8E4A2B; --muted:#a89f8c; --rule:#3a352f; }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{width:1080px;height:1080px;background:var(--bg);color:var(--ink);font-family:"Work Sans",Arial,sans-serif;-webkit-font-smoothing:antialiased}
 .bebas{font-family:"Bebas Neue","Arial Narrow",Impact,sans-serif;font-weight:400}
 .card{width:1080px;height:1080px;padding:0 64px;border-top:12px solid var(--red);border-bottom:12px solid var(--red);display:flex;flex-direction:column}
 .brand{text-align:center;padding-top:40px}
-.brand h1{font-size:104px;line-height:.9;letter-spacing:.02em}
-.brand h1 span{color:var(--red)}
+.brand h1{font-size:104px;line-height:.9;letter-spacing:.06em}
+.brand h1 span{color:var(--ink)}
+.brand .rule{width:520px;height:6px;background:var(--red);margin:14px auto 0}
 .brand .loc{margin-top:10px;font-size:18px;letter-spacing:.32em;color:var(--muted);text-transform:uppercase}
 .svc{text-align:center;margin-top:26px}
-.svc h2{font-size:64px;line-height:1;color:var(--red)}
+.svc h2{font-size:64px;line-height:1;color:var(--ink)}
 .svc .specs{margin-top:8px;font-size:19px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
 .svc .specs span{color:var(--red);padding:0 10px}
 .rates{display:flex;gap:24px;margin-top:38px}
@@ -18,11 +19,11 @@ html,body{width:1080px;height:1080px;background:var(--bg);color:var(--ink);font-
 .rate.main{border-color:var(--red)}
 .rate .lbl{font-size:18px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
 .rate .amt{font-family:"Bebas Neue","Arial Narrow",Impact,sans-serif;font-size:96px;line-height:1;margin-top:6px}
-.rate.main .amt{color:var(--red)}
+.rate.main .amt{color:#D9A066}
 .rate .sub{font-size:17px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:6px}
-.bar{margin-top:36px;background:var(--red);color:#fff;text-align:center;padding:18px 30px}
+.bar{margin-top:36px;background:var(--red);color:#EDE6D3;text-align:center;padding:18px 30px}
 .bar .big{font-size:40px;line-height:1}
-.bar .small{font-family:"Work Sans",sans-serif;font-size:17px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-top:6px;color:#ffd9de}
+.bar .small{font-family:"Work Sans",sans-serif;font-size:17px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-top:6px;color:#f1d9c6}
 .terms{margin-top:34px;text-align:center;font-size:20px;line-height:1.85;color:var(--ink)}
 .terms .dot{color:var(--red);padding:0 10px}
 .terms b{font-weight:700}
@@ -30,7 +31,7 @@ html,body{width:1080px;height:1080px;background:var(--bg);color:var(--ink);font-
 .cta .sep{color:var(--red);padding:0 16px}
 </style></head><body>
 <div class="card">
-  <div class="brand"><h1 class="bebas">MUSTANG <span>LAND &amp; BRUSH</span></h1><div class="loc">Leona, Texas</div></div>
+  <div class="brand"><h1 class="bebas">MUSTANG <span>LAND &amp; BRUSH</span></h1><div class="rule"></div><div class="loc">Leona, Texas</div></div>
   <div class="svc">
     <h2 class="bebas">FORESTRY MULCHING &nbsp;·&nbsp; LAND CLEARING</h2>
     <div class="specs">Takeuchi TL11R3<span>•</span>107 HP High-Flow<span>•</span>Forestry Mulcher<span>•</span>Operator Included</div>
